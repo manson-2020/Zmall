@@ -1,0 +1,218 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<script src="/static/admin/ueditor/ueditor.config.js" type="text/javascript"></script>
+<script src="/static/admin/ueditor/ueditor.all.js" type="text/javascript"></script>
+<style type="text/css">
+/* TAB */
+.nav-tabs.nav>li>a {
+    padding: 10px 25px;
+    margin-right: 0;
+}
+.nav-tabs.nav>li>a:hover,
+.nav-tabs.nav>li.active>a {
+    border-top: 3px solid #1ab394;
+    padding-top: 8px;
+    border-bottom: 1px solid #FFFFFF;
+}
+.nav-tabs>li>a {
+    color: #A7B1C2;
+    font-weight: 500;  
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+</style>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>网站配置</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">       
+                    <div class="panel blank-panel">
+                        <div class="panel-heading">                     
+                            <div class="panel-options">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">基本配置</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">页码条数</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form action="{:url('save')}" method="post" class="form-horizontal" id="config">
+                                <div class="tab-content">
+                                    <div id="tab-1" class="tab-pane active">
+                                        <div class="hr-line-dashed"></div>                                
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">地址：</label>
+                                            <div class="input-group col-sm-4">
+                                                <textarea type="text" class="form-control" name="config[address]" >{$config.address}</textarea>
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">建站公司名称：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[company]" value="{$config.company}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>
+</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">电话：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[tel]" value="{$config.tel}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>
+</span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">email：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[email]" value="{$config.email}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>
+												</span>
+                                            </div>
+                                        </div>
+										<div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">传真：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[fax]" value="{$config.fax}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>  </span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">邮编：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[email_card]" value="{$config.email_card}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> </span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">手机：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[phone]" value="{$config.phone}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">二维码上传</label>
+                                            <div class="col-sm-4">
+                                                <input type="hidden" name="config[img]" value="{$config.img}" id="img">
+                                                <div id="filePicker">选择图片</div>
+                                                <div id="fileList">
+                                                    {if (isset($config.img))}
+                                                    <img src = "{$config.img}" width="100" height="80">
+                                                    {/if}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="tab-2" class="tab-pane">
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">后台每页记录数：</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" name="config[list_rows]" value="{$config.list_rows}">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 后台数据每页显示记录数</span>
+                                            </div>
+                                        </div>
+
+                                </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-3">
+                                            <button class="btn btn-primary btn_submit"><i class="fa fa-save"></i> 保存信息</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+<script src="/static/admin/dist/zoomify.js"></script>
+<script type="text/javascript">
+    $('#data_photo').zoomify();
+    $('#data_photo_en').zoomify();
+
+</script>
+<script type="text/javascript" src="/static/admin/webupload/webuploader.min.js"></script>
+<script type="text/javascript">
+    $('.btn_submit').click(function(){
+        $('#config').ajaxForm({
+            success: function(data){
+                artisan.success(data.msg , "{:url('Config/index')}");
+            }, 
+            dataType: 'json'
+        });
+    });
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+</script>
+<script>
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+        // 选完文件后，是否自动上传。
+        auto: true,
+        // swf文件路径
+        swf: '/static/admin/webupload/Uploader.swf',// swf文件路径
+        // 文件接收服务端。
+        server: '{:url("upload/upload")}',
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+        fileNumLimit:1,
+        thread:1,
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function( file ,response) {
+        console.log(response._raw);
+        var img ='<img src="'+response._raw+'" width="100" height="80">';
+        $('#fileList').html(img);
+        $('#img').attr('value',response._raw);
+    });
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        var $li = $( '#'+file.id ),
+                $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+
+        $error.text('上传失败');
+    });
+    </script>
+</body>
+</html>
